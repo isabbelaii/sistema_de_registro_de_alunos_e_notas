@@ -1,0 +1,83 @@
+-- Criação do banco de dados
+CREATE DATABASE Escola;
+USE Escola;
+
+-- Criação da tabela Alunos
+CREATE TABLE Alunos (
+    id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    endereco VARCHAR(255) NOT NULL
+);
+
+-- Criação da tabela Cursos
+CREATE TABLE Cursos (
+    id_curso INT AUTO_INCREMENT PRIMARY KEY,
+    nome_curso VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+-- Criação da tabela Notas
+CREATE TABLE Notas (
+    id_nota INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT,
+    id_curso INT,
+    nota DECIMAL(5, 2) NOT NULL,
+    FOREIGN KEY (id_aluno) REFERENCES Alunos(id_aluno) ON DELETE CASCADE,
+    FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso) ON DELETE CASCADE
+);
+
+-- Inserir alunos
+INSERT INTO Alunos (nome, data_nascimento, endereco) VALUES
+('João Silva', '1990-05-15', 'Rua das Flores, 123'),
+('Maria Santos', '1992-08-22', 'Avenida Brasil, 456'),
+('Carlos Oliveira', '1989-11-30', 'Praça Central, 789');
+
+-- Inserir cursos
+INSERT INTO Cursos (nome_curso, descricao) VALUES
+('Matemática', 'Curso de Matemática Básica e Avançada'),
+('História', 'Curso sobre História Geral e Moderna'),
+('Biologia', 'Curso de Biologia e Ciências Naturais');
+
+-- Inserir notas
+INSERT INTO Notas (id_aluno, id_curso, nota) VALUES
+(1, 1, 9.5),
+(1, 2, 8.0),
+(2, 1, 7.5),
+(2, 3, 9.0),
+(3, 2, 6.0);
+
+-- Liste todos os alunos juntamente com as notas que eles obtiveram em cada curso
+SELECT a.nome AS nome_aluno, c.nome_curso, n.nota
+FROM Notas n
+JOIN Alunos a ON n.id_aluno = a.id_aluno
+JOIN Cursos c ON n.id_curso = c.id_curso;
+
+-- Calcule a média das notas para cada curso
+SELECT c.nome_curso, AVG(n.nota) AS media_nota
+FROM Notas n
+JOIN Cursos c ON n.id_curso = c.id_curso
+GROUP BY c.nome_curso;
+
+-- Encontre o aluno com a maior nota em cada curso
+SELECT c.nome_curso, a.nome AS nome_aluno, MAX(n.nota) AS maior_nota
+FROM Notas n
+JOIN Cursos c ON n.id_curso = c.id_curso
+JOIN Alunos a ON n.id_aluno = a.id_aluno
+GROUP BY c.nome_curso;
+
+-- Atualize a nota de um aluno em um curso específico (por exemplo, id_aluno = 1 e id_curso = 1)
+UPDATE Notas
+SET nota = 9.8
+WHERE id_aluno = 1 AND id_curso = 1;
+
+-- Modifique o endereço de um aluno para um novo endereço (por exemplo, id_aluno = 1)
+UPDATE Alunos
+SET endereco = 'Rua Nova, 321'
+WHERE id_aluno = 1;
+
+-- Exclua um aluno e todas as suas notas associadas (por exemplo, id_aluno = 1)
+DELETE FROM Alunos WHERE id_aluno = 1;
+
+-- Remova um curso e todas as notas associadas a esse curso (por exemplo, id_curso = 2)
+DELETE FROM Cursos WHERE id_curso = 2;
