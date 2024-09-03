@@ -1,0 +1,100 @@
+Você foi contratado por uma instituição de ensino para desenvolver um sistema de registro de alunos e suas notas em diversos cursos. O objetivo é criar um banco de dados relacional utilizando SQL para gerenciar as informações de alunos, cursos e notas. Seu sistema deve permitir operações básicas de inserção, consulta, atualização e exclusão de dados.
+
+Tarefas:
+
+Criação do Banco de Dados:
+
+Crie um banco de dados chamado Escola.
+Criação das Tabelas:
+
+Tabela Alunos: Deve conter os seguintes campos:
+id_aluno (Identificador do aluno, chave primária, auto incremento)
+nome (Nome do aluno)
+data_nascimento (Data de nascimento do aluno)
+endereco (Endereço do aluno)
+Tabela Cursos: Deve conter os seguintes campos:
+id_curso (Identificador do curso, chave primária, auto incremento)
+nome_curso (Nome do curso)
+descricao (Descrição do curso)
+Tabela Notas: Deve conter os seguintes campos:
+id_nota (Identificador da nota, chave primária, auto incremento)
+id_aluno (Identificador do aluno, chave estrangeira referenciando Alunos)
+id_curso (Identificador do curso, chave estrangeira referenciando Cursos)
+nota (Nota atribuída ao aluno no curso)
+Inserção de Dados:
+
+Insira ao menos 3 alunos na tabela Alunos.
+Insira ao menos 3 cursos na tabela Cursos.
+Insira ao menos 5 registros de notas na tabela Notas, associando alunos aos cursos com notas variadas.
+Consultas:
+
+Liste todos os alunos juntamente com as notas que eles obtiveram em cada curso.
+Calcule a média das notas para cada curso.
+Encontre o aluno com a maior nota em cada curso.
+Atualização de Dados:
+
+Atualize a nota de um aluno em um curso específico.
+Modifique o endereço de um aluno para um novo endereço.
+Exclusão de Dados:
+
+Exclua um aluno e todas as suas notas associadas.
+Remova um curso e todas as notas associadas a esse curso.
+Requisitos: Utilize comandos SQL como CREATE DATABASE, CREATE TABLE, INSERT, SELECT, UPDATE, DELETE e JOIN. As tabelas devem estar corretamente normalizadas. As operações devem ser executadas em um ambiente SQL relacional de sua escolha.
+
+Entrega:
+
+Submeta o código SQL completo em um arquivo .sql.
+Inclua um documento explicativo com uma breve descrição das tabelas e das operações realizadas.
+# Sistema de Registro de Alunos e Notas
+
+## Descrição
+
+Este projeto implementa um sistema de registro de alunos e suas notas em cursos utilizando SQL. O banco de dados `Escola` foi criado para gerenciar as informações de alunos, cursos e notas, suportando operações básicas de inserção, consulta, atualização e exclusão de dados.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `Escola` possui as seguintes tabelas:
+
+1. **Tabela Alunos**
+   - `id_aluno`: Identificador do aluno (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `nome`: Nome do aluno (VARCHAR(100), NOT NULL)
+   - `data_nascimento`: Data de nascimento do aluno (DATE, NOT NULL)
+   - `endereco`: Endereço do aluno (VARCHAR(255), NOT NULL)
+
+2. **Tabela Cursos**
+   - `id_curso`: Identificador do curso (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `nome_curso`: Nome do curso (VARCHAR(100), NOT NULL)
+   - `descricao`: Descrição do curso (TEXT)
+
+3. **Tabela Notas**
+   - `id_nota`: Identificador da nota (INT, AUTO_INCREMENT, PRIMARY KEY)
+   - `id_aluno`: Identificador do aluno (INT, FOREIGN KEY, REFERENCES Alunos)
+   - `id_curso`: Identificador do curso (INT, FOREIGN KEY, REFERENCES Cursos)
+   - `nota`: Nota atribuída ao aluno no curso (DECIMAL(5, 2), NOT NULL)
+
+## Instruções
+
+### Configuração do Banco de Dados
+
+1. Execute o script SQL fornecido para criar o banco de dados e as tabelas.
+2. Insira os dados de exemplo usando os comandos de inserção fornecidos.
+
+### Consultas e Relatórios
+
+- **Alunos e Notas em Cursos:** Liste todos os alunos com suas notas em cursos.
+- **Média das Notas:** Calcule a média das notas por curso.
+- **Maior Nota por Curso:** Encontre o aluno com a maior nota em cada curso.
+
+### Atualizações e Exclusões
+
+- **Atualizar Nota:** Modifique a nota de um aluno em um curso específico.
+- **Atualizar Endereço:** Altere o endereço de um aluno.
+- **Excluir Dados:** Remova alunos, cursos e suas respectivas notas do banco de dados.
+
+## Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+## Contato
+
+Para dúvidas ou sugestões, entre em contato com [seu.email@dominio.com](mailto:seu.email@dominio.com).
